@@ -49,10 +49,14 @@ jobs:
           cd frontend
           npm ci
       
-      - name: Run frontend tests
+      - name: Check if tests exist and run them
         run: |
           cd frontend
-          npm test -- --passWithNoTests
+          if npm run | grep -q '"test"'; then
+            npm test -- --passWithNoTests
+          else
+            echo "No tests found in frontend, skipping..."
+          fi
 
   build_and_push:
     name: Build and Push Docker Images
@@ -109,4 +113,3 @@ jobs:
             📦 Образы загружены на Docker Hub
             🧪 Тесты пройдены успешно
             🔗 Репозиторий: ${{ github.repository }}
-
