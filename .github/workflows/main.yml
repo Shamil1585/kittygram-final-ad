@@ -20,9 +20,15 @@ jobs:
         with:
           python-version: '3.11'
       
-      - name: Install dependencies
+      - name: Install system dependencies
         run: |
-          pip install Django==3.2.23 djangorestframework==3.12.4 djoser==2.1.0 webcolors==1.11.1
+          sudo apt-get update
+          sudo apt-get install -y libjpeg-dev zlib1g-dev libpng-dev
+      
+      - name: Install Python dependencies
+        run: |
+          pip install --upgrade pip
+          pip install Django==3.2.23 djangorestframework==3.12.4 djoser==2.1.0 webcolors==1.11.1 Pillow==9.5.0
       
       - name: Run Django tests
         run: |
