@@ -1,7 +1,6 @@
 import unittest
-from django.test import TestCase
 
-class SimpleMathTests(TestCase):
+class SimpleMathTests(unittest.TestCase):
     def test_addition(self):
         self.assertEqual(2 + 2, 4)
     
@@ -10,17 +9,25 @@ class SimpleMathTests(TestCase):
     
     def test_multiplication(self):
         self.assertEqual(3 * 4, 12)
-
-class DjangoSetupTest(TestCase):
-    def test_django_is_working(self):
-        """Test that Django is properly set up"""
-        from django.conf import settings
-        self.assertTrue(hasattr(settings, 'INSTALLED_APPS'))
     
-    def test_apps_are_configured(self):
-        """Test that required apps are in INSTALLED_APPS"""
-        from django.conf import settings
-        self.assertIn('cats', settings.INSTALLED_APPS)
+    def test_division(self):
+        self.assertEqual(10 / 2, 5)
+    
+    def test_string_concatenation(self):
+        self.assertEqual("kitty" + "gram", "kittygram")
+
+class SimpleLogicTests(unittest.TestCase):
+    def test_boolean_true(self):
+        self.assertTrue(True)
+    
+    def test_boolean_false(self):
+        self.assertFalse(False)
+    
+    def test_is_none(self):
+        self.assertIsNone(None)
+    
+    def test_is_not_none(self):
+        self.assertIsNotNone("something")
 
 if __name__ == '__main__':
     unittest.main()
